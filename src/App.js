@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { ProSidebar } from "react-pro-sidebar";
+import "react-pro-sidebar/dist/css/styles.css";
+import { GlobalStyles } from "./styles/global";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyles />
+      <p>oiadadasdadadd</p>
+      <ProSidebar
+        style={{ height: "100vh" }}
+        image="https://wallpaperaccess.com/full/124383.jpg"
+      >
+        {/* <Menu iconShape="square">
+          <MenuItem icon={<FaGem />}>Dashboard</MenuItem>
+          <SubMenu title="Components" icon={<FaHeart />}>
+            <MenuItem>Component 1</MenuItem>
+            <MenuItem>Component 2</MenuItem>
+          </SubMenu>
+        </Menu> */}
+      </ProSidebar>
+    </>
   );
 }
 
