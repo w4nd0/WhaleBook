@@ -26,5 +26,14 @@ export const CustomHeader = styled.header`
     display: flex;
     align-items: center;
     margin-left: 60px;
+    cursor: pointer;
+  }
+
+  .buttonWrap {
+    display: flex;
+    button:first-child {
+      margin-right: 20px;
+    }
+    margin-left: 500px;
   }
 `;

@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Header />
-      <Aside />
+      {/* <Aside /> */}
       <GlobalStyles />
       <Routes />
     </>
