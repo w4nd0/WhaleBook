@@ -1,0 +1,14 @@
+.success {
+  border: 2px solid rgb(81, 202, 70);
+  border-radius: 5px;
+}
+
+.error {
+  border: 2px solid rgb(223, 58, 53);
+  border-radius: 5px;
+}
+
+.warning {
+  border: 2px solid rgb(240, 243, 92);
+  border-radius: 5px;
+}
