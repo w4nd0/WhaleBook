@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Routes />
-      <Aside />
+      {/* <Aside /> */}
       <GlobalStyles />
     </>
   );

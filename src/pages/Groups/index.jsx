@@ -1,7 +1,9 @@
+import GroupsGrid from "../../components/GroupsGrid";
+
 const Groups = () => {
   return (
     <>
-      <div>Groups</div>
+     <GroupsGrid/>
     </>
   );
 };
