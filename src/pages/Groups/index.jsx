@@ -2,9 +2,7 @@ import GroupsGrid from "../../components/GroupsGrid";
 
 const Groups = () => {
   return (
-    <>
-     <GroupsGrid/>
-    </>
+      <GroupsGrid />
   );
 };
 

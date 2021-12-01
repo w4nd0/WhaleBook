@@ -1,31 +1,42 @@
-import { Card, CardMedia, Typography, CardContent } from "@mui/material";
+import {
+  Card,
+  CardMedia,
+  Typography,
+  CardContent,
+  Button,
+} from "@mui/material";
 
 const GroupsCard = ({ group }) => {
   return (
     <>
-      <Card>
+      <Card style={{ margin: "10px", width: "190px" }}>
         {group && (
           <CardMedia
             component="img"
-            height="200"
-            image={"https://picsum.photos/200/200"}
+            height="150"
+            image={"https://picsum.photos/100/150"}
             alt="group"
           />
         )}
         <CardContent>
-          <Typography variant="h5" color="text.secondary">
-            {group.name}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {group.description.length > 38
-              ? `${group.description.substring(0, 33)}...`
-              : group.description}
+          <Typography
+            variant="h5"
+            color="text.secondary"
+            style={{ textAlign: "center" }}
+          >
+            {group.group.name}
           </Typography>
         </CardContent>
 
-        <div className="btn">
-          <input type="button" value="Sair" onClick={() => {}} />
-        </div>
+        <Button
+          style={{ display: "block", margin: "5px auto" }}
+          type="submit"
+          variant="contained"
+          color="error"
+          disableElevation
+        >
+          Sair
+        </Button>
       </Card>
     </>
   );
