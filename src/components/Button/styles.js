@@ -11,8 +11,9 @@ export const ButtonType = styled.button`
   transition: 300ms;
   letter-spacing: 0.5px;
   padding: 0px 20px;
-  border: 2px solid
-    ${(props) => (props.whiteSchema ? "var(--border)" : "transparent")};
+  border: 1px solid
+    ${(props) =>
+      props.whiteSchema ? "var(--background-black)" : "transparent"};
   display: flex;
   align-items: center;
   position: relative;
