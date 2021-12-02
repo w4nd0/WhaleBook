@@ -2,6 +2,10 @@ import { Container } from "./styles";
 import Lottie from "react-lottie";
 import HomeImg from "../../assets/lotties/home_img.json";
 
+import { Redirect } from "react-router-dom";
+
+import { useAccount } from "../../providers/accounts";
+
 const lottieOptions = {
   loop: true,
 
@@ -12,6 +16,12 @@ const lottieOptions = {
 };
 
 const Home = () => {
+  const { token } = useAccount();
+
+  if (token) {
+    return <Redirect to="/dashboard" />;
+  }
+
   return (
     <Container>
       <div className="textContainer">

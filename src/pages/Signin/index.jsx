@@ -19,7 +19,7 @@ const lottieOptions = {
   },
 };
 const Signin = () => {
-  const { loginUser } = useAccount();
+  const { loginUser, token } = useAccount();
 
   const schema = yup.object().shape({
     email: yup.string().email("E-mail inválido").required("Campo obrigatório!"),
@@ -51,9 +51,9 @@ const Signin = () => {
     }
   };
 
-  //   if (authenticated) {
-  //     return <Redirect to="/dashboard" />;
-  //   }
+  if (token) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <Container>
