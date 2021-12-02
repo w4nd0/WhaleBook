@@ -6,6 +6,7 @@ import { NotificationsContext } from "../notifications";
 export const BooksContext = createContext();
 
 export const BooksProvider = ({ children }) => {
+  const [actualBook, setActualBook] = useState({})
   const [selfHelpBooks, setSelfHelpBooks] = useState([]);
   const [fantasyBooks, setFantasyBooks] = useState([]);
   const [adventureBooks, setAdventureBooks] = useState([]);
@@ -113,6 +114,14 @@ export const BooksProvider = ({ children }) => {
       });
   };
 
+  const getBook = (bookSelfLink) => {
+    api
+      .get(bookSelfLink)
+      .then((res) => {
+        setActualBook(res.data);
+      });
+  };
+
   return (
     <BooksContext.Provider
       value={{
@@ -127,6 +136,8 @@ export const BooksProvider = ({ children }) => {
         lookBooks,
         userBooks,
         searchBooks,
+        getBook,
+        actualBook
       }}
     >
       {children}
