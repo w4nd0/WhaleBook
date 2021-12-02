@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import api from "../../services";
+import api from "../../services/api";
 import { NotificationsContext } from "../notifications";
 
 export const AccountContext = createContext([]);
@@ -57,29 +57,31 @@ export const AccountProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
-  const createAccount = (data) => {
-    api.post("api/accounts/", data).then((res) => {
-      if (res.status === 201) {
+  const createAccount = async (data) => {
+    try {
+      await api.post("api/accounts/", data).then(() => {
         registerSuccess();
-      } else {
-        registerError(res.data);
-      }
-    });
+        return true;
+      });
+    } catch {
+      registerError();
+      return false;
+    }
   };
 
-  const loginUser = (data) => {
-    api
-      .post("api/login/", data)
-      .then((res) => {
-        localStorage.setItem("@WhaleBooks:token", res.data.access);
-        localStorage.setItem("@WhaleBooks:refresh", res.data.refresh);
-        setToken(res.data.access);
-        setRefreshToken(res.data.refresh);
-        loginSuccess();
-      })
-      .catch((_) => {
-        loginError();
-      });
+  const loginUser = async (data) => {
+    try {
+      const res = await api.post("api/login/", data);
+      localStorage.setItem("@WhaleBooks:token", res.data.access);
+      localStorage.setItem("@WhaleBooks:refresh", res.data.refresh);
+      setToken(res.data.access);
+      setRefreshToken(res.data.refresh);
+      loginSuccess();
+      return true;
+    } catch {
+      loginError();
+      return false;
+    }
   };
 
   const getAllUsers = () => {
