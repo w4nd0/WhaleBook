@@ -52,7 +52,7 @@ const GroupsGrid = () => {
     api
       .get("/groups/my_groups/", {
         headers: {
-          Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM4NDU0NDU4LCJpYXQiOjE2Mzg0NTA4NTgsImp0aSI6ImMwMzI4YzQyZjhiOTRiMTE4YmM3MjNjYjQ5YTk3Y2ViIiwidXNlcl9pZCI6MTAsInVzZXIiOiJ0dWxpcGEifQ.skUn98lO2ZIgB4fa7oiaBVPb0-RVR0-J966-m1n-_xs`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => setGroups(response.data));
@@ -67,7 +67,7 @@ const GroupsGrid = () => {
     api
       .post("/groups/", data, {
         headers: {
-          Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM4NDU0NDU4LCJpYXQiOjE2Mzg0NTA4NTgsImp0aSI6ImMwMzI4YzQyZjhiOTRiMTE4YmM3MjNjYjQ5YTk3Y2ViIiwidXNlcl9pZCI6MTAsInVzZXIiOiJ0dWxpcGEifQ.skUn98lO2ZIgB4fa7oiaBVPb0-RVR0-J966-m1n-_xs`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then(() => getGroups());

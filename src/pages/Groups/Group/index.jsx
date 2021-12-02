@@ -13,7 +13,7 @@ const Group = () => {
     api
       .get(`/groups/${id}/`, {
         headers: {
-          Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM4NDQ5MDg2LCJpYXQiOjE2Mzg0NDU0ODYsImp0aSI6IjY5ZjZhNjY1NzJhMTQ2YjA4YTVmNmZiM2UxZjNhNjAyIiwidXNlcl9pZCI6MTAsInVzZXIiOiJ0dWxpcGEifQ.P3NF5IPL6lt5WZFFFLgYggWOzmafaVxr3rXkEfSHMzo`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => setGroup(response.data));
@@ -23,7 +23,7 @@ const Group = () => {
     api
       .get(`/groups/${id}/goals/`, {
         headers: {
-          Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM4NDQ5MDg2LCJpYXQiOjE2Mzg0NDU0ODYsImp0aSI6IjY5ZjZhNjY1NzJhMTQ2YjA4YTVmNmZiM2UxZjNhNjAyIiwidXNlcl9pZCI6MTAsInVzZXIiOiJ0dWxpcGEifQ.P3NF5IPL6lt5WZFFFLgYggWOzmafaVxr3rXkEfSHMzo`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => setGoals(response.data));
@@ -85,10 +85,7 @@ const Group = () => {
             goals.map((goal) => (
               <CardGoal key={goal.id}>
                 {/* <img src={goal.image_url} alt="Imagem Objetivo" /> */}
-                <img
-                  src="https://picsum.photos/75/100"
-                  alt="Imagem Objetivo"
-                />
+                <img src="https://picsum.photos/75/100" alt="Imagem Objetivo" />
 
                 <div className="textBox">
                   <h5>{goal.title}</h5>
