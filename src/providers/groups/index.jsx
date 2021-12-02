@@ -6,117 +6,114 @@ import { NotificationsContext } from "../notifications";
 export const GroupsContext = createContext();
 
 export const GroupsProvider = ({ children }) => {
+  const [groups, setGroups] = useState([]);
   const [userGroups, setUserGroups] = useState([]);
+  const [userOwnedGroups, setUserOwnedGroups] = useState([]);
+  const [groupsRequest, setGroupsRequest] = useState([]);
+  const [usersInGroup, setUsersInGroup] = useState([]);
   const {} = useContext(NotificationsContext);
-  const { token } = useAccount();
+  const { token, userId } = useAccount();
 
-  useEffect(() => {
-    api.get("api/books/?q=''&maxResults=40").then((res) => {
-      setAllBooks(res.data);
-    });
-    api.get("api/books/?q=fantasia&maxResults=20").then((res) => {
-      setFantasyBooks(res.data);
-    });
-    api.get("api/books/?q=autoajuda&maxResults=20").then((res) => {
-      setSelfHelpBooks(res.data);
-    });
-    api.get("api/books/?q=aventura&maxResults=20").then((res) => {
-      setAdventureBooks(res.data);
-    });
-  }, []);
-
-  const getUserBooks = () => {
+  const getUserGroups = () => {
     api
-      .get("api/user/books/", {
+      .get("api/groups/my_groups/", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
-        setUserBooks(res.data);
+        setUserGroups(res.data);
+        let ownedGroups = [];
+        for (let g in res.data) {
+          if (g.group.leader.id === userId) {
+            ownedGroups.push(g);
+          }
+        }
+        setUserOwnedGroups(ownedGroups);
+      });
+  };
+
+  const getGroups = () => {
+    api
+      .get("api/groups/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setGroups(res.data);
       });
   };
 
   useEffect(() => {
-    getUserBooks();
+    getUserGroups();
+    getGroups();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
-  const searchBooks = (value) => {
-    api.get(`api/books/?q=${value}&maxResults=20`).then((res) => {
-      setSearchBooks(res.data);
-    });
-  };
-
-  const getUserBooksById = (book_id) => {
+  const getGroupsRequest = (groupId) => {
     api
-      .get(`api/user/books/${book_id}/`, {
+      .get(`api/groups/${groupId}/request_users/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
-        setSearchBooks(res.data);
+        setGroupsRequest(res.data);
       });
   };
 
-  const updateUserBooks = (book_id) => {
+  const membersInGroup = (groupId) => {
     api
-      .patch(`api/user/books/${book_id}/`, data, {
+      .post(`api/groups/${groupId}/members/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((_) => {
-        updateBookSuccess();
-        getUserBooks();
+      .then((res) => {
+        setUsersInGroup(res.data);
       });
   };
 
-  const deleteUserBooks = (book_id) => {
+  const acceptMemberInGroup = (groupId, requestUserId) => {
     api
-      .delete(`api/user/books/${book_id}/`, {
+      .post(`api/groups/${groupId}/accept_member/${requestUserId}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((_) => {
-        deleteBookSuccess();
-        getUserBooks();
+      .then(() => {
+        getGroupsRequest(groupId);
+        membersInGroup(groupId);
       });
   };
 
-  const addUserBook = (book_url, image_url, title, total_pages) => {
-    let data = {
-      book_url: book_url,
-      image_url: image_url,
-      title: title,
-      total_pages: total_pages,
-    };
+  const removeMemberFromGroup = (groupId, memberId) => {
     api
-      .post("api/user/books/", data, {
+      .post(`api/groups/${groupId}/remove_member/${memberId}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((_) => {
-        addBookSuccess();
-        getUserBooks();
+      .then(() => {
+        membersInGroup(groupId);
       });
   };
 
   return (
     <GroupsContext.Provider
       value={{
-        addUserBook,
-        deleteUserBooks,
-        updateUserBooks,
-        getUserBooksById,
-        selfHelpBooks,
-        fantasyBooks,
-        adventureBooks,
-        allBooks,
-        searchBooks,
-        userBooks,
+        removeMemberFromGroup,
+        acceptMemberInGroup,
+        membersInGroup,
+        getGroupsRequest,
+        getGroups,
+        getUserGroups,
+        groups,
+        userOwnedGroups,
+        userGroups,
+        groupsRequest,
+        usersInGroup,
       }}
     >
       {children}
