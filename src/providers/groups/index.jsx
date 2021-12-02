@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import api from "../../services";
+import api from "../../services/api";
 import { useAccount } from "../accounts";
 import { NotificationsContext } from "../notifications";
 
