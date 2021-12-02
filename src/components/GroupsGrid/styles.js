@@ -8,9 +8,10 @@ export const CardNewGroup = styled.div`
   border-radius: 4px;
   text-align: center;
   padding-top: 60px;
+  cursor: pointer;
 
-    img{
-        max-width: 90px;
-        border-radius: 50%;
-    }
+  img {
+    max-width: 90px;
+    border-radius: 50%;
+  }
 `;
