@@ -23,10 +23,10 @@ export const BooksProvider = ({ children }) => {
     api.get("api/books/?q=fantasia&maxResults=20").then((res) => {
       setFantasyBooks(res.data);
     });
-    api.get("api/books/?q=autoajuda&maxResults=20").then((res) => {
+    api.get("api/books/?q=selfhelp&maxResults=20").then((res) => {
       setSelfHelpBooks(res.data);
     });
-    api.get("api/books/?q=aventura&maxResults=20").then((res) => {
+    api.get("api/books/?q=adventure&maxResults=20").then((res) => {
       setAdventureBooks(res.data);
     });
   }, []);
@@ -44,7 +44,9 @@ export const BooksProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getUserBooks();
+    if (token) {
+      getUserBooks();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 

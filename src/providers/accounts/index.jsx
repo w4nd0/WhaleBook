@@ -30,6 +30,17 @@ export const AccountProvider = ({ children }) => {
   //     }
   //   }, []);
 
+  const getAllUsers = () => {
+    api
+      .get("api/users/")
+      .then((res) => {
+        setAllUsers(res.data);
+      })
+      .catch((_) => {
+        return { error: "try again" };
+      });
+  };
+
   useEffect(() => {
     getAllUsers();
     const storageRefreshToken =
@@ -38,22 +49,25 @@ export const AccountProvider = ({ children }) => {
     if (storageRefreshToken) {
       api.post("api/refresh/", data).then((res) => {
         setToken(res.data.access);
+        localStorage.setItem("@WhaleBooks:token", res.data.access);
       });
     }
   }, []);
 
   useEffect(() => {
-    api
-      .get("api/user/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setUserId(res.id);
-        setUsername(res.username);
-      })
-      .catch((_) => loginError());
+    if (token) {
+      api
+        .get("api/user/", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setUserId(res.id);
+          setUsername(res.username);
+        })
+        .catch((_) => loginError());
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
@@ -81,17 +95,6 @@ export const AccountProvider = ({ children }) => {
       loginError();
       return false;
     }
-  };
-
-  const getAllUsers = () => {
-    api
-      .get("api/users/")
-      .then((res) => {
-        setAllUsers(res.data);
-      })
-      .catch((_) => {
-        return { error: "try again" };
-      });
   };
 
   const getUserById = (id) => {
