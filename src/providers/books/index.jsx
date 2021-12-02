@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import api from "../../services";
+import api from "../../services/api";
 import { useAccount } from "../accounts";
+import { NotificationsContext } from "../notifications";
 
 export const BooksContext = createContext();
 
@@ -44,9 +45,10 @@ export const BooksProvider = ({ children }) => {
 
   useEffect(() => {
     getUserBooks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
-  const searchBooks = (value) => {
+  const lookBooks = (value) => {
     api.get(`api/books/?q=${value}&maxResults=20`).then((res) => {
       setSearchBooks(res.data);
     });
@@ -64,7 +66,7 @@ export const BooksProvider = ({ children }) => {
       });
   };
 
-  const updateUserBooks = (book_id) => {
+  const updateUserBooks = (data, book_id) => {
     api
       .patch(`api/user/books/${book_id}/`, data, {
         headers: {
@@ -120,8 +122,9 @@ export const BooksProvider = ({ children }) => {
         fantasyBooks,
         adventureBooks,
         allBooks,
-        searchBooks,
+        lookBooks,
         userBooks,
+        searchBooks,
       }}
     >
       {children}

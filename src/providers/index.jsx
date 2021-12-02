@@ -9,9 +9,7 @@ const Providers = ({ children }) => {
     <NotificationsProvider>
       <AccountProvider>
         <FriendsProvider>
-          <BooksProvider>
-            <GroupsProvider>{children}</GroupsProvider>
-          </BooksProvider>
+          <BooksProvider>{children}</BooksProvider>
         </FriendsProvider>
       </AccountProvider>
     </NotificationsProvider>
