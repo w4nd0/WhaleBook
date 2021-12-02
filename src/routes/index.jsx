@@ -5,6 +5,7 @@ import Signin from "../pages/Signin";
 import Signup from "../pages/Signup";
 import NotFound from "../pages/NotFound";
 import ProtectedRoute from "./protected";
+import Book from "../pages/Book";
 const Routes = () => {
   return (
     <Switch>
@@ -13,6 +14,7 @@ const Routes = () => {
       <ProtectedRoute component={Signup} path="/signup" />
       <ProtectedRoute component={Dashboard} path="/dashboard" isPrivate />
       <ProtectedRoute path="/404" component={NotFound} />
+      <ProtectedRoute component={Book} path="/book" />
       <Redirect to="/404" />
     </Switch>
   );
