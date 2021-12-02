@@ -59,10 +59,9 @@ export const AccountProvider = ({ children }) => {
 
   const createAccount = async (data) => {
     try {
-      await api.post("api/accounts/", data).then(() => {
-        registerSuccess();
-        return true;
-      });
+      await api.post("api/accounts/", data);
+      registerSuccess();
+      return true;
     } catch {
       registerError();
       return false;
