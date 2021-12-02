@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import api from "../../services";
 import { useAccount } from "../accounts";
+import { NotificationsContext } from "../notifications";
 
 export const BooksContext = createContext();
 
