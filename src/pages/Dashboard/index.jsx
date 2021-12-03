@@ -21,8 +21,6 @@ const Dashboard = () => {
         <Container>
           <CarouselSample books={allBooks} name="Diversos" />
           <CarouselSample books={fantasyBooks} name="Fantasia" />
-          <CarouselSample books={adventureBooks} name="Aventura" />
-          <CarouselSample books={selfHelpBooks} name="Autoajuda" />
         </Container>
       )}
     </>

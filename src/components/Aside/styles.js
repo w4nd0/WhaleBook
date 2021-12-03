@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ProSidebar, Menu, SidebarHeader } from "react-pro-sidebar";
 
 export const CustomSideBar = styled(ProSidebar)`
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 3;
