@@ -1,8 +1,8 @@
-import GroupsGrid from "../../components/GroupsGrid";
-
 const Groups = () => {
   return (
-      <GroupsGrid />
+    <>
+      <div>Groups</div>
+    </>
   );
 };
 
