@@ -53,7 +53,12 @@ const Aside = () => {
           </SubMenu>
           <SubMenu title="Grupos" icon={<RiGroupFill />}>
             <MenuItem icon={<RiSearch2Line />}>Descobrir</MenuItem>
-            <MenuItem icon={<BsFillPersonFill />}>Meus grupos</MenuItem>
+            <MenuItem
+              icon={<BsFillPersonFill />}
+              onClick={() => Redirect("/groups")}
+            >
+              Meus grupos
+            </MenuItem>
           </SubMenu>
           <SubMenu title="Components" icon={<GiThreeFriends />}>
             <MenuItem icon={<RiSearch2Line />}>Descobrir</MenuItem>
