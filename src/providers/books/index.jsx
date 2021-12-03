@@ -38,6 +38,8 @@ export const BooksProvider = ({ children }) => {
       });
   }, []);
 
+  console.log(fantasyBooks);
+
   const getUserBooks = () => {
     api
       .get("api/user/books/", {
