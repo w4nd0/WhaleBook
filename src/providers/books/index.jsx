@@ -18,9 +18,11 @@ export const BooksProvider = ({ children }) => {
     useContext(NotificationsContext);
 
   useEffect(() => {
-    api.get(`api/books/?q=python&langRestrict=pt&maxResults=40`).then((res) => {
-      setAllBooks(res.data);
-    });
+    api
+      .get(`api/books/?q=diversos&langRestrict=pt&maxResults=40`)
+      .then((res) => {
+        setAllBooks(res.data);
+      });
     api
       .get("api/books/?q=fantasia&langRestrict=pt&maxResults=20")
       .then((res) => {
