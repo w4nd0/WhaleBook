@@ -51,7 +51,7 @@ const Signup = () => {
   const onSubmitFunction = async (data) => {
     delete data["confirmPassword"];
     delete data["confirmEmail"];
-    console.log(data);
+    // console.log(data);
     const sucessRegister = await createAccount(data);
 
     if (sucessRegister) {

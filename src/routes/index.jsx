@@ -1,6 +1,8 @@
 import { Switch, Redirect } from "react-router-dom";
 import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
+import Groups from "../pages/Groups";
+import Group from "../pages/Groups/Group";
 import Signin from "../pages/Signin";
 import Signup from "../pages/Signup";
 import NotFound from "../pages/NotFound";
@@ -13,6 +15,8 @@ const Routes = () => {
       <ProtectedRoute component={Signin} path="/signin" />
       <ProtectedRoute component={Signup} path="/signup" />
       <ProtectedRoute component={Dashboard} path="/dashboard" isPrivate />
+      <ProtectedRoute component={Groups} path="/groups" />
+      <ProtectedRoute component={Group} path="/group/:id" />
       <ProtectedRoute path="/404" component={NotFound} />
       <ProtectedRoute component={Book} path="/book" />
       <Redirect to="/404" />
