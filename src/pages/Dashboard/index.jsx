@@ -1,7 +1,12 @@
+import CarouselSample from "../../components/CarouselSample";
+import { useBooks } from "../../providers/books";
 import Button from "../../components/Button";
 import { useHistory } from "react-router";
+import { Container } from "./styles";
 
 const Dashboard = () => {
+  const { allBooks, fantasyBooks, adventureBooks, selfHelpBooks } = useBooks();
+
   const history = useHistory();
   return (
     <>
@@ -12,6 +17,14 @@ const Dashboard = () => {
       >
         book
       </Button>
+      {allBooks && (
+        <Container>
+          <CarouselSample books={allBooks} name="Diversos" />
+          <CarouselSample books={fantasyBooks} name="Fantasia" />
+          <CarouselSample books={adventureBooks} name="Aventura" />
+          <CarouselSample books={selfHelpBooks} name="Autoajuda" />
+        </Container>
+      )}
     </>
   );
 };
