@@ -43,7 +43,7 @@ const Signin = () => {
   const onSubmitFunction = async (data) => {
     delete data["confirmPassword"];
     delete data["confirmEmail"];
-    // console.log(data);
+    console.log(data);
     const sucessRegister = await loginUser(data);
 
     if (sucessRegister) {
