@@ -13,6 +13,12 @@ export const AccountProvider = ({ children }) => {
   const { registerError, registerSuccess, loginError, loginSuccess } =
     useContext(NotificationsContext);
 
+  useEffect(() => {
+    setToken(localStorage.getItem("@WhaleBooks:token") || "");
+  }, [token]);
+
+  console.log(token);
+
   //   useEffect(() => {
   //     const storageToken = localStorage.getItem("@WhaleBooks:token") || "";
   //     if (storageToken) {
@@ -118,6 +124,7 @@ export const AccountProvider = ({ children }) => {
         username,
         allUsers,
         getUserById,
+        setToken,
       }}
     >
       {children}

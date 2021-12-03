@@ -1,13 +1,23 @@
 import Carousel, { Controller } from "@jjunyjjuny/react-carousel";
-import { Container, Item } from "./styles";
+import { Container } from "./styles";
 
-const CarouselSample = ({ books }) => {
+const CarouselSample = ({ books, name }) => {
   return (
     <Container>
       {books && (
         <>
-          <h2 style={{ textAlign: "center" }}>Sample Carousel</h2>
-          <Carousel itemCountPerPanel={5} customMode carouselId={"jjunyjjuny"}>
+          <h2 style={{ textAlign: "center" }}>{name}</h2>
+          <div
+            style={{
+              position: "relative",
+              top: "133px",
+              right: "60px",
+              width: "50px",
+            }}
+          >
+            <Controller prev carouselId={`jjunyjjuny${name}`} />
+          </div>
+          <Carousel itemCountPerPanel={5} customMode carouselId={`jjunyjjuny${name}`}>
             {books.map((book) => (
               <img
                 src={
@@ -20,16 +30,7 @@ const CarouselSample = ({ books }) => {
               />
             ))}
           </Carousel>
-          <div
-            style={{
-              position: "relative",
-              bottom: "90px",
-              right: "30px",
-              width: "50px",
-            }}
-          >
-            <Controller prev carouselId={"jjunyjjuny"} />
-          </div>
+
           <div
             style={{
               position: "relative",
@@ -38,7 +39,7 @@ const CarouselSample = ({ books }) => {
               width: "50px",
             }}
           >
-            <Controller next carouselId={"jjunyjjuny"} />
+            <Controller next carouselId={`jjunyjjuny${name}`} />
           </div>
         </>
       )}

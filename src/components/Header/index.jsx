@@ -3,25 +3,36 @@ import WhaleIcon from "../../assets/svg/whale_icon.svg";
 import Button from "../Button";
 import Input from "../Input";
 import { useHistory, useLocation } from "react-router";
+import { useAccount } from "../../providers/accounts";
+
 const Header = () => {
   const authenticated = false;
   const { pathname } = useLocation();
   const history = useHistory();
 
+  const { token, setToken } = useAccount();
+
   const handleLocation = (location) => {
-    history.push(`/${location}`);
+    if (location === "logout") {
+      localStorage.clear();
+      setToken("");
+
+      history.push(`/`);
+    } else {
+      history.push(`/${location}`);
+    }
   };
 
   return (
     <CustomHeader>
-      {authenticated ? (
-        <div>
+      {token ? (
+        <div className="container">
           <div className="wrap" onClick={() => handleLocation("")}>
             <img src={WhaleIcon} alt="" />
             <h1>WhaleBook</h1>
           </div>
           <Input type="text" placeholder="Procure um livro" />
-          <Button>Sair</Button>
+          <Button onClickFunc={() => handleLocation("logout")}>Sair</Button>
         </div>
       ) : (
         <>
