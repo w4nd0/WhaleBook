@@ -31,6 +31,7 @@ export const BooksProvider = ({ children }) => {
     });
   }, []);
 
+  console.log(allBooks)
   const getUserBooks = () => {
     api
       .get("api/user/books/", {
