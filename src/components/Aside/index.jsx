@@ -15,7 +15,14 @@ import { GiThreeFriends } from "react-icons/gi";
 import BooksIcon from "../../assets/svg/books_icon.svg";
 import "react-pro-sidebar/dist/css/styles.css";
 import WhaleIcon from "../../assets/svg/whale_icon.svg";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
+
 const Aside = () => {
+  const history = useHistory();
+  const Redirect = (path) => {
+    history.push(path);
+  };
+
   return (
     <CustomSideBar image="https://wallpaperaccess.com/full/124383.jpg">
       <CustomHeader>
@@ -34,7 +41,12 @@ const Aside = () => {
             title="Meus livros"
             icon={<img src={BooksIcon} alt="books" />}
           >
-            <MenuItem icon={<RiBook3Fill />}>Todos</MenuItem>
+            <MenuItem
+              icon={<RiBook3Fill />}
+              onClick={() => Redirect("/allbooks")}
+            >
+              Todos
+            </MenuItem>
             <MenuItem icon={<RiBook3Fill />}>Lendo</MenuItem>
             <MenuItem icon={<RiBook3Fill />}>Lidos</MenuItem>
             <MenuItem icon={<RiBook3Fill />}>Lista de desejos</MenuItem>

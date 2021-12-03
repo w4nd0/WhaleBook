@@ -6,7 +6,7 @@ import { NotificationsContext } from "../notifications";
 export const BooksContext = createContext();
 
 export const BooksProvider = ({ children }) => {
-  const [actualBook, setActualBook] = useState({})
+  const [actualBook, setActualBook] = useState({});
   const [selfHelpBooks, setSelfHelpBooks] = useState([]);
   const [fantasyBooks, setFantasyBooks] = useState([]);
   const [adventureBooks, setAdventureBooks] = useState([]);
@@ -18,18 +18,24 @@ export const BooksProvider = ({ children }) => {
     useContext(NotificationsContext);
 
   useEffect(() => {
-    api.get(`api/books/?q=null&lang=pt&maxResults=40`).then((res) => {
+    api.get(`api/books/?q=python&langRestrict=pt&maxResults=40`).then((res) => {
       setAllBooks(res.data);
     });
-    api.get("api/books/?q=fantasia&lang=pt&maxResults=20").then((res) => {
-      setFantasyBooks(res.data);
-    });
-    api.get("api/books/?q=autoajuda&lang=pt&maxResults=20").then((res) => {
-      setSelfHelpBooks(res.data);
-    });
-    api.get("api/books/?q=aventura&lang=pt&maxResults=20").then((res) => {
-      setAdventureBooks(res.data);
-    });
+    api
+      .get("api/books/?q=fantasia&langRestrict=pt&maxResults=20")
+      .then((res) => {
+        setFantasyBooks(res.data);
+      });
+    api
+      .get("api/books/?q=autoajuda&langRestrict=pt&maxResults=20")
+      .then((res) => {
+        setSelfHelpBooks(res.data);
+      });
+    api
+      .get("api/books/?q=aventura&langRestrict=pt&maxResults=20")
+      .then((res) => {
+        setAdventureBooks(res.data);
+      });
   }, []);
 
   const getUserBooks = () => {
@@ -115,11 +121,9 @@ export const BooksProvider = ({ children }) => {
   };
 
   const getBook = (bookSelfLink) => {
-    api
-      .get(bookSelfLink)
-      .then((res) => {
-        setActualBook(res.data);
-      });
+    api.get(bookSelfLink).then((res) => {
+      setActualBook(res.data);
+    });
   };
 
   return (
@@ -137,7 +141,8 @@ export const BooksProvider = ({ children }) => {
         userBooks,
         searchBooks,
         getBook,
-        actualBook
+        actualBook,
+        setActualBook,
       }}
     >
       {children}
