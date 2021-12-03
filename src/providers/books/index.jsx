@@ -18,20 +18,6 @@ export const BooksProvider = ({ children }) => {
     useContext(NotificationsContext);
 
   useEffect(() => {
-<<<<<<< HEAD
-    api.get(`api/books/?q=null&lang=pt&maxResults=40`).then((res) => {
-      setAllBooks(res.data);
-    });
-    api.get("api/books/?q=fantasia&lang=pt&maxResults=20").then((res) => {
-      setFantasyBooks(res.data);
-    });
-    api.get("api/books/?q=autoajuda&lang=pt&maxResults=20").then((res) => {
-      setSelfHelpBooks(res.data);
-    });
-    api.get("api/books/?q=aventura&lang=pt&maxResults=20").then((res) => {
-      setAdventureBooks(res.data);
-    });
-=======
     api
       .get(`api/books/?q=diversos&langRestrict=pt&maxResults=40`)
       .then((res) => {
@@ -52,7 +38,6 @@ export const BooksProvider = ({ children }) => {
       .then((res) => {
         setAdventureBooks(res.data);
       });
->>>>>>> ae047418f639eb61356b7f7c5bdcf2a5855bb09c
   }, []);
 
   console.log(fantasyBooks);
