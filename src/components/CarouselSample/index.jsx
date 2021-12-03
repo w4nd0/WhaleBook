@@ -34,7 +34,7 @@ const CarouselSample = ({ books, name }) => {
           <div
             style={{
               position: "relative",
-              bottom: "138px",
+              bottom: "102px",
               left: "100%",
               width: "50px",
             }}
