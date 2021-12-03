@@ -51,6 +51,32 @@ export const NotificationsProvider = ({ children }) => {
     });
   };
 
+  const addBookSuccess = () => {
+    notification.success({
+      message: <h3>Livro adicionado!</h3>,
+      description: <p>Não esqueça ele na prateleira.</p>,
+      icon: <span>"🧮"</span>,
+      className: "success",
+    });
+  };
+
+  const updateBookSuccess = () => {
+    notification.success({
+      message: <h3>Livro atualizado!</h3>,
+      description: <p>Está tudo na última versão.</p>,
+      icon: <span>"🔖"</span>,
+      className: "success",
+    });
+  };
+
+  const deleteBookSuccess = () => {
+    notification.warning({
+      message: <h3>Livro excluído!</h3>,
+      description: <p>O importante é escolher um livro que lhe agrade.</p>,
+      icon: <span>"🗑️"</span>,
+      className: "warning",
+    });
+  };
   return (
     <NotificationsContext.Provider
       value={{
@@ -59,6 +85,9 @@ export const NotificationsProvider = ({ children }) => {
         logoutSuccess,
         loginError,
         loginSuccess,
+        addBookSuccess,
+        updateBookSuccess,
+        deleteBookSuccess,
       }}
     >
       {children}

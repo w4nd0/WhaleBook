@@ -4,6 +4,8 @@ import api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useAccount } from "../../providers/accounts";
+import { useGroups } from "../../providers/groups";
 
 import {
   Grid,
@@ -35,6 +37,7 @@ const GroupsGrid = () => {
   const [groups, setGroups] = useState([]);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const { token } = useAccount();
 
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório"),
@@ -50,22 +53,21 @@ const GroupsGrid = () => {
   // Authorization: `Bearer ${token}`,
   const getGroups = () => {
     api
-      .get("/groups/my_groups/", {
+      .get("api/groups/my_groups/", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => setGroups(response.data));
   };
-
   useEffect(() => {
     getGroups();
     //eslint-disable-next-line
-  }, []);
+  }, [token, groups]);
 
   const createGroup = (data) => {
     api
-      .post("/groups/", data, {
+      .post("api/groups/", data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -97,8 +99,8 @@ const GroupsGrid = () => {
       >
         {groups &&
           groups.map((groups) => (
-            <Grid key={groups.id}>
-              <GroupsCard group={groups} />
+            <Grid>
+              <GroupsCard group={groups} key={groups.id} />
             </Grid>
           ))}
         <CardNewGroup onClick={handleOpen}>

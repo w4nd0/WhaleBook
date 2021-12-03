@@ -3,15 +3,17 @@ import api from "../../../services/api";
 import { useEffect, useState } from "react";
 import { Container, Head, Goals, CardGoal, Users } from "./styles";
 import { Typography } from "@mui/material";
+import { useAccount } from "../../../providers/accounts";
 
 const Group = () => {
   const { id } = useParams();
   const [group, setGroup] = useState("");
   const [goals, setGoals] = useState([]);
+  const { token } = useAccount();
 
   const getGroup = () => {
     api
-      .get(`/groups/${id}/`, {
+      .get(`api/groups/${id}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -21,7 +23,7 @@ const Group = () => {
 
   const getGoals = () => {
     api
-      .get(`/groups/${id}/goals/`, {
+      .get(`api/groups/${id}/goals/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -33,7 +35,7 @@ const Group = () => {
     getGroup();
     getGoals();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [token, goals]);
 
   return (
     <>

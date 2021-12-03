@@ -22,6 +22,19 @@ export const CustomHeader = styled.header`
     /* height: 40px; */
   }
 
+  .container {
+    display: flex;
+    justify-content: space-evenly;
+
+    input {
+      margin-left: 200px;
+    }
+
+    button {
+      margin-left: 200px;
+    }
+  }
+
   .wrap {
     display: flex;
     align-items: center;
