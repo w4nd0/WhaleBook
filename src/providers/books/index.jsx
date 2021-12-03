@@ -17,20 +17,22 @@ export const BooksProvider = ({ children }) => {
     useContext(NotificationsContext);
 
   useEffect(() => {
-    api.get(`api/books/?q=null&lang=pt&maxResults=40`).then((res) => {
+    api.get(`api/books/?q=null&langRestrict=pt&maxResults=40`).then((res) => {
       setAllBooks(res.data);
     });
-    api.get("api/books/?q=fantasia&lang=pt&maxResults=20").then((res) => {
+    api.get("api/books/?q=fantasia&langRestrict=pt&maxResults=20").then((res) => {
       setFantasyBooks(res.data);
     });
-    api.get("api/books/?q=autoajuda&lang=pt&maxResults=20").then((res) => {
+    api.get("api/books/?q=autoajuda&langRestrict=pt&maxResults=20").then((res) => {
       setSelfHelpBooks(res.data);
     });
-    api.get("api/books/?q=aventura&lang=pt&maxResults=20").then((res) => {
+    api.get("api/books/?q=aventura&langRestrict=pt&maxResults=20").then((res) => {
       setAdventureBooks(res.data);
     });
   }, []);
 
+  console.log(fantasyBooks)
+  
   const getUserBooks = () => {
     api
       .get("api/user/books/", {
