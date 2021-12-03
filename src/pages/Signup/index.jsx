@@ -19,7 +19,7 @@ const lottieOptions = {
   },
 };
 const Signup = () => {
-  const { createAccount } = useAccount();
+  const { createAccount, token } = useAccount();
 
   const schema = yup.object().shape({
     username: yup.string().required("Campo obrigatório!"),
@@ -59,9 +59,9 @@ const Signup = () => {
     }
   };
 
-  //   if (authenticated) {
-  //     return <Redirect to="/dashboard" />;
-  //   }
+  if (token) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <Container>

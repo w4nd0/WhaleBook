@@ -7,6 +7,7 @@ import NotFound from "../pages/NotFound";
 import ProtectedRoute from "./protected";
 import AllBooksPage from "../pages/AllBooks";
 
+import Book from "../pages/Book";
 const Routes = () => {
   return (
     <Switch>
@@ -16,6 +17,7 @@ const Routes = () => {
       <ProtectedRoute component={Dashboard} path="/dashboard" isPrivate />
       <ProtectedRoute component={AllBooksPage} path="/allbooks" isPrivate />
       <ProtectedRoute path="/404" component={NotFound} />
+      <ProtectedRoute component={Book} path="/book" />
       <Redirect to="/404" />
     </Switch>
   );
