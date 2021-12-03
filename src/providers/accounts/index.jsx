@@ -17,7 +17,7 @@ export const AccountProvider = ({ children }) => {
     setToken(localStorage.getItem("@WhaleBooks:token") || "");
   }, [token]);
 
-  // console.log(token);
+  console.log(token);
 
   //   useEffect(() => {
   //     const storageToken = localStorage.getItem("@WhaleBooks:token") || "";
