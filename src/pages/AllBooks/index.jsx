@@ -9,7 +9,7 @@ const AllBooksPage = () => {
     <Container>
       <h1>Todos livros</h1>
       <section>
-        {searchBooks
+        {searchBooks.length > 0
           ? searchBooks.map((book) => <CardOfBook book={book} />)
           : allBooks.map((book) => <CardOfBook book={book} />)}
       </section>
